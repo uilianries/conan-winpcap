@@ -37,4 +37,4 @@ class winpcapConan(ConanFile):
             self.copy(pattern="Packet.lib", dst="lib", src=os.path.join("WpdPack", "Lib"), keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = self.collect_libs()
+        self.cpp_info.libs = tools.collect_libs(self)
