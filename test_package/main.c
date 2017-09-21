@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 
     if (pcap_findalldevs(&alldevs, errbuf) == -1) {
         fprintf(stderr,"Couldn't execute pcap_findalldevs: %s\n", errbuf);
-        exit(1);
+	RETURN EXIT_SUCCESS;
     }
 
     for (it = alldevs; it != NULL; it = it->next) {
