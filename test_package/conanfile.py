@@ -14,7 +14,7 @@ class TestPcapConan(ConanFile):
     generators = "cmake"
     channel = getenv("CONAN_CHANNEL", "testing")
     username = getenv("CONAN_USERNAME", "uilianries")
-    requires = "winpcap/4.1.3@%s/%s" % (username, channel)
+    requires = "winpcap/4.1.2@%s/%s" % (username, channel)
 
     def build(self):
         cmake = CMake(self)
