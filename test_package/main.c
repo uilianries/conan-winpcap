@@ -13,6 +13,7 @@ int main(int argc, char **argv)
     char errbuf[PCAP_ERRBUF_SIZE] = {0};
     bpf_u_int32 netp = 0;
     bpf_u_int32 maskp = 0;
+    const char* dev = NULL;
 
     dev = pcap_lookupdev(errbuf);
     if (dev != NULL) {
