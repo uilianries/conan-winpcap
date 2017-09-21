@@ -4,8 +4,7 @@
  *
  * Copyright 2017 Uilian Ries <uilianries@gmail.com>
  */
-#include <assert.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include <pcap.h>
 
 int main(int argc, char **argv)
@@ -18,7 +17,7 @@ int main(int argc, char **argv)
     dev = pcap_lookupdev(errbuf);
     if (dev != NULL) {
         if (pcap_lookupnet(dev, &netp, &maskp, errbuf) == -1) {
-            fprintf(stderr, "Couldn't get netmask for device %s: %s\n", dev, errbuf);
+            printf("Couldn't get netmask for device %s: %s\n", dev, errbuf);
         }
     }
 
