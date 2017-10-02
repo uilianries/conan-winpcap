@@ -15,7 +15,7 @@ class winpcapConan(ConanFile):
     author = "Uilian Ries <uilianries@gmail.com>"
     description = "The WinPcap packet capture library."
     license = "https://github.com/the-tcpdump-group/winpcap/blob/master/LICENSE"
-    exports = "LICENSE"
+    exports = "LICENSE", "dll/*"
 
     def source(self):
         tools.get("https://www.winpcap.org/install/bin/WpdPack_4_1_2.zip")
@@ -27,12 +27,10 @@ class winpcapConan(ConanFile):
     def package(self):
         self.copy("LICENSE", src=".", dst=".")
         self.copy(pattern="*.h", dst="include", src=os.path.join("WpdPack", "Include"))
+        self.copy(pattern="wpcap.dll", dst="bin", src="dll", keep_path=False)
         if self.settings.arch == "x86_64":
-            self.copy(pattern="*.dll", dst="bin", src=os.path.join("WpdPack", "Lib", "x64"), keep_path=False)
             self.copy(pattern="*.lib", dst="lib", src=os.path.join("WpdPack", "Lib", "x64"), keep_path=False)
         else:
-            self.copy(pattern="wpcap.dll", dst="bin", src=os.path.join("WpdPack", "Lib"), keep_path=False)
-            self.copy(pattern="Packet.dll", dst="bin", src=os.path.join("WpdPack", "Lib"), keep_path=False)
             self.copy(pattern="wpcap.lib", dst="lib", src=os.path.join("WpdPack", "Lib"), keep_path=False)
             self.copy(pattern="Packet.lib", dst="lib", src=os.path.join("WpdPack", "Lib"), keep_path=False)
 
