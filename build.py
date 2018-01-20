@@ -1,11 +1,8 @@
-"""This script build Conan.io package to multiple platforms."""
-import platform
-from copy import copy
-from conan.packager import ConanMultiPackager
-from conan.builds_generator import BuildConf
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+from bincrafters import build_template_default
 
 if __name__ == "__main__":
-    builder = ConanMultiPackager()
-    builder.add_common_builds(pure_c=True)
+    builder = build_template_default.get_builder()
     builder.run()

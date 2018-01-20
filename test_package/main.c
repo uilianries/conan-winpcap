@@ -4,9 +4,8 @@
  *
  * Copyright 2017 Uilian Ries <uilianries@gmail.com>
  */
-#include <assert.h>
 #include <stdlib.h>
-#include <pcap.h>
+#include "pcap.h"
 
 int main(int argc, char **argv)
 {
@@ -20,7 +19,11 @@ int main(int argc, char **argv)
     if (dev != NULL) {
         if (pcap_lookupnet(dev, &netp, &maskp, errbuf) == -1) {
             fprintf(stderr, "Couldn't get netmask for device %s: %s\n", dev, errbuf);
+        } else {
+            fprintf(stdout, "Success to detected device: %s\n", dev);
         }
+    } else {
+        fprintf(stderr, "Couldn't lookup device: %s\n", errbuf);
     }
 
     return EXIT_SUCCESS;
